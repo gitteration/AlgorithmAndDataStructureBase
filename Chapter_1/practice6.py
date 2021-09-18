@@ -45,3 +45,31 @@ if(a>b):
 for i in range(a, b+1):
     sum += i
 print(f'{a}부터 {b}까지의 정수의 합은 {sum} 입니다')
+
+# 튜플이란 ? 파이썬의 리스트와 비슷하다. 즉, 변수의 값들을 교환할 때 사용한다
+str1 = 'java'
+str2 = 'javscript'
+print(f'str1의 value는 {str1} 이고 str2의 value는{str2} 이다')
+str1 , str2 = str2 , str1
+print(f'값 교환 - str1의 value는 {str1}로 변경되었고 str2의 value는 {str2}로 변경되었다')
+
+
+# +와 -를 번갈아 출력하기
+# print문의 end는 출력을 완료한 후 뒤에 문자열을 추가하는 옵션이다. 빈 문자열로 삽입한 이유는 개행을 막기위함(기본적으로 print문이 끝나면 개행이 되기 때문이다.)
+print('+와-를 번걸아 출력하기')
+n = int(input('출력할 횟수 입력 : '))
+
+# 이 소스의 코드의 문제는 만약 입력한 n값이 1000번이라 한다면 1000번의 if문을 실행하는 것 이다.
+for i in range(n):
+    if i % 2:
+        print('-', end='')
+    else:
+        print('+', end='')
+print()
+# 바로 위의 소스의 개선버전이다. 
+# n / 2를 하여 나머지 만큼 반복을 하고 마지막 if문으로 나머지를 구하여 마지막 문장을 출력해준다.
+# 언더바(_)의 의미는 반환하는 인덱스가 필요하지 않을 때 무시용으로 사용한다
+for i in range(n // 2):
+    print('+-', end ='')
+if n % 2 :
+    print('+', end='')
