@@ -69,7 +69,23 @@ print()
 # 바로 위의 소스의 개선버전이다. 
 # n / 2를 하여 나머지 만큼 반복을 하고 마지막 if문으로 나머지를 구하여 마지막 문장을 출력해준다.
 # 언더바(_)의 의미는 반환하는 인덱스가 필요하지 않을 때 무시용으로 사용한다
+
 for i in range(n // 2):
     print('+-', end ='')
 if n % 2 :
     print('+', end='')
+print()
+
+# *를 n개 출력하되 w개마다 줄바꿈하기 
+print('*를 n개 출력하되 w개마다 줄바꿈하기')
+a = int(input('출력할 a개 입력:'))
+b = int(input('줄바꿈 b개 입력:'))
+
+# for i in range(a):
+#     print('*', end = '')
+#     if i % b == b-1 : print()    
+
+for _ in range(a // b):
+    print('*' * b)
+rest = a % b
+if rest:print('*' * rest)
