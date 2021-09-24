@@ -179,7 +179,7 @@ print(a is [1,2,3])
 
 print('### 내포 표기 생성 ###')
 a = [1,2,3]
-b = [num * 2 for num in a if num % 2 == 1]
+b = [i * 2 for i in a if num % 2 == 1] # for문을 돌면서 if문에 해당되는 i를 *2 하여 원소 할당
 print(b)
 
     
