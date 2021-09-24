@@ -29,3 +29,10 @@ def test() :
 test()
 print(f'id(1) ::: {id(1)}')
 print(f'id(n) ::: {id(n)}')
+
+# 그렇다면 값만 복사해서 다른 메모리 주소를 갖게해서 서로 다른 변수로 할려면??? copy를 이용하자
+ori = [1,2,3]
+copy = ori
+print(f'{id(ori)}, {id(copy)}')
+copy = ori.copy()
+print(f'{id(ori)}, {id(copy)}')
