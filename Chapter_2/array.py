@@ -208,3 +208,96 @@ if __name__ == '__main__' :
         if retry in {'N','n'} :
         # if retry == 'N' or retry == 'n'와 동일한 로직이다 
             break
+
+"""
+보통 다른 언어에서는 매개변수 값을 받을 때 call by value 또는 call by reference를 사용하지만
+파이썬의 경우 이 2가지의 중간인 call by object reference라는 것을 사용한다
+call by object reference는 이뮤터블일 경우와 뮤터블일 경우로 나뉜다
+
+call by value(값에 의한 호출)       - 받은 인자의 값을 복사하여 처리
+                                   - 장점 : 복사하여 처리하기 때문에 안전, 원래의 값 보존
+                                   - 단점 : 메모리 주소 하나 더 생성하여 복사를 하기 때문에 메모리 사용량이 늘어난다 
+
+call by reference(참조에 의한 호출) - 받은 인자의 주소를 참조하여 처리
+                                   - 장점 : 복사하지 않고 직접 참조하기 때문에 빠름
+                                   - 단점 : 직접 참조하기 때문에 원래 값에 영향을 미친다
+
+call by object reference(객체 참조에 의한 전달)
+                                   - 이뮤터블일 경우 : 매개변수로 받은 값의 타입이 이뮤터블일 경우 함수안에서 값이 변경된다 하더라도 원래의 값은 변하지 않는다  
+                                   - 뮤터블일 경우 : 매개변수로 받은 값의 타입이 뮤터블일 경우 함수안에서 값을 변경하게 되면 변경된다  
+                                   - 왜 이럴까 : 파이썬은 다른 언어와 달리 변수는 value의 메모리 주소를 참조하기 때문이다. 
+"""
+
+### 객체 참조에 의한 전달에 대한 예를 보자
+# - 이뮤터블인 경우(수, 문자열, 튜플)
+# - 기존 변수의 값은 유지되는 것을 볼 수 있다(변경된 값은 아예 다른 메모리 주소를 참조하기 때문이다)
+int = 10
+string = 'test'
+tuple = (1,2,3)
+
+def translateImmutable(int, string, tuple) : 
+    int = 20
+    string = 'test2222'
+    tuple  = (4,5,6)
+    return int, string, tuple
+
+res_int, res_string, res_tuple = translateImmutable(int, string, tuple)
+print(
+    f"""
+        ### 기존 value ###
+        int ::: {int} intID ::: {id(int)}
+        string ::: {string} stringID ::: {id(string)}
+        tuple ::: {tuple}   tupleID ::: {id(tuple)}
+        
+        ### 변경 후 value ###
+        res_int ::: {res_int} intID ::: {id(res_int)}
+        res_string ::: {res_string} stringID ::: {id(res_string)}
+        res_tuple ::: {res_tuple}   tupleID ::: {id(res_tuple)}
+    """
+)
+
+# - 뮤터블인 경우(리스트, 딕셔너리, 집합)
+# - 기존의 변수의 값이 변경되는 것을 볼 수 있다(뮤터블 같은 경우 해당 메모리 주소 안에 값이 변경되기 때문이다)
+
+list = [1,2,3]
+set = set({1,2,3})
+dictionary = {'idx1': 1,'idx2': 2,'idx3': 3}
+
+def translateMutable(list, set, dictionary) :
+    list[0] = 4
+    list[1] = 5
+    list[2] = 6
+    set.add('4')
+    set.add('5')
+    set.add('6')
+    dictionary['idx1'] = 4
+    dictionary['idx2'] = 5
+    dictionary['idx3'] = 6
+
+
+print(
+    f"""
+        ### 기존 value ###
+        list ::: {list} intID ::: {id(list)}
+        set ::: {set} stringID ::: {id(set)}
+        dictionary ::: {dictionary}   dictionaryID ::: {id(dictionary)}
+    """
+)
+
+translateMutable(list, set, dictionary)
+
+print(
+    f"""
+        ### 변경 후 value ###
+        list ::: {list} intID ::: {id(list)}
+        set ::: {set} stringID ::: {id(set)}
+        dictionary ::: {dictionary}   tupleID ::: {id(dictionary)}
+    """
+)
+
+### 소수 나열하기 ###
+
+
+
+
+    
